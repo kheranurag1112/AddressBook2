@@ -1,0 +1,57 @@
+﻿@model Loc_CountryModel
+@{
+    ViewData["Title"] = "AddCountry";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title">
+            Country Page
+        </h1>
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+        <div class="row">
+            <div class="col-md-12">
+                <h4>@TempData["CountryInsertMsg"]</h4>
+
+                <form method="post" asp-controller="Loc_Country" asp-action="Save">
+                    @Html.HiddenFor(x=>x.CountryID)
+                    <div class="from-group">
+                        <label><span class="text-danger">*</span>Country Name</label>
+                        <input type="text" class="from-control" placeholder="Enter Country Name" asp-for="CountryName" />
+                        <span asp-validation-for="CountryName" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label><span class="text-danger">*</span>Country Code</label>
+                        <input type="text" class="from-Control" placeholder="Enter Country Code" asp-for="CountryCode" />
+                        <span asp-validation-for="CountryCode" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label>CreateDate</label>
+                        <input type="date" class="from-Control" asp-for="CreateDate" />
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label>ModifiedDatee</label>
+                        <input type="date" class="from-Control" asp-for="ModifiedDate" />
+                    </div>
+                    <hr />
+                    <input type="submit" value="Add" class="btn btn-success" />
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+
+

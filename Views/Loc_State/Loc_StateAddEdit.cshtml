@@ -1,0 +1,63 @@
+﻿@model Loc_StateModel
+
+
+            <<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title">
+            Country Page
+        </h1>
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>@TempData["StateInsertMsg"]</h4>
+                <form method="post" asp-controller="Loc_State" asp-action="Save">
+                    @Html.HiddenFor(x=>x.StateID)
+
+                    <div class="from-group">
+                        <label>CountryName</label>
+                        <select class="from-Control" placeholder="Enter Country Name" asp-for="CountryID" asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))">
+                            <option value="">Select List</option>
+                        </select>
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label><span class="text-danger">*</span>StateName</label>
+                        <input type="text" class="from-Control" placeholder="Enter State Name" asp-for="StateName" />
+                        <span asp-validation-for="StateName" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label><span class="text-danger">*</span>StateCode</label>
+                        <input type="text" class="from-Control" placeholder="Enter Country Code" asp-for="StateCode" />
+                        <span asp-validation-for="StateCode" class="text-danger"></span>
+                    </div>
+                    <hr />
+
+
+                    <div class="from-group">
+                        <label>CreateDate</label>
+                        <input type="date" class="from-Control" asp-for="CreateDate" />
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label>ModifiedDate</label>
+                        <input type="date" class="from-Control" asp-for="ModifiedDate" />
+                    </div>
+                    <hr />
+                    <input type="submit" />
+
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->

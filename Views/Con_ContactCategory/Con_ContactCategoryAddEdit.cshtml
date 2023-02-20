@@ -1,0 +1,46 @@
+﻿@model Con_ContactCategoryModel
+ <<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title">
+            Country Page
+        </h1>
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>@TempData["ContactCategoryInsertMsg"]</h4>
+                <form method="post" asp-controller="Con_ContactCategory" asp-action="Save">
+                    @Html.HiddenFor(x=>x.ContactCategoryID)
+                    <div class="from-group">
+                        <label><span class="text-danger">*</span>ContactCategoryName</label>
+                        <input type="text" class="from-Control" placeholder="Enter ContactCategoryName" asp-for="ContactCategoryName" />
+                        <span asp-validation-for="ContactCategoryName" class="text-danger"></span>
+                    </div>
+                    <hr />
+
+                    <div class="from-group">
+                        <label>CreatDate</label>
+                        <input type="date" class="from-Control" asp-for="CreatDate" />
+                    </div>
+                    <hr />
+                    <div class="from-group">
+                        <label>ModifiedDatee</label>
+                        <input type="date" class="from-Control" asp-for="ModifiedDate" />
+                    </div>
+                    <hr />
+                    <input type="submit" />
+
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->

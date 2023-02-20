@@ -1,0 +1,130 @@
+﻿@using System.Data
+@model DataTable
+
+<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+    <!-- BEGIN CONTENT BODY -->
+    <div class="page-content">
+        <!-- BEGIN PAGE TITLE-->
+        <h1 class="page-title">
+        </h1>
+        <!-- END PAGE TITLE-->
+        <!-- END PAGE HEADER-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light portlet-fit bordered">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-settings font-red"></i>
+
+                            <span class="caption-subject font-red sbold uppercase">Country Table</span>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="table-toolbar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption font-dark">
+                                            <i class="icon-settings font-dark"></i>
+                                            <span class="caption-subject bold uppercase">Country</span>
+                                        </div>
+                                        <div class="actions">
+                                            <a asp-controller="Loc_Country" asp-action="Add" class="btn btn-primary">Add Country</a>
+                                        </div>
+                                        <div class="tools"> </div>
+                                    </div>
+                                    <div class="portlet-body table-both-scroll">
+
+                                        <div class="portlet-body">
+                                            <div class="pull-right">
+                                                <div id="sample_1_filter" class="dataTable_filter">
+                                                    <label><b>Search &nbsp;</b><input type="text" class="form-control input-sm input-small input-inline" placeholder="" id="sample_4" aria-controls="sample_4" /></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br /><br /><br />
+                                        <table class="table table-striped table-bordered table-hover order-column" id="sample_4">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    
+                                                    <th scope="col">CountryName</th>
+                                                    <th scope="col">CountryCode</th>
+                                                    <th scope="col">CreateDate</th>
+                                                    <th scope="col">ModifiedDate</th>
+                                                    <th scope="col">Delete</th>
+                                                    <th scope="col">Edit</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sample_2">
+                                                @foreach (DataRow datarow in Model.Rows)
+                                                {
+                                                    <tr>
+
+                                                        
+                                                        <td scope="col">@datarow["CountryName"]</td>
+                                                        <td scope="col">@datarow["CountryCode"]</td>
+                                                        <td scope="col">@Convert.ToDateTime(datarow["CreateDate"]).ToString("dd-MM-yyyy")</td>
+                                                        <td scope="col">@Convert.ToDateTime(datarow["ModifiedDate"]).ToString("dd-MM-yyyy")</td>
+
+                                                        <td class="col text-light">
+                                                            <Form method="post" asp-controller="Loc_Country" asp-action="Delete">
+                                                                <input type="hidden" name="CountryID" value="@Convert.ToInt32(datarow["CountryID"])" />
+                                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete : @datarow["CountryName"]')">
+                                                                    Delete
+                                                                </button>
+                                                            </Form>
+                                                        </td>
+                                                        <td>
+                                                            <Form method="post" asp-controller="Loc_Country" asp-action="Add">
+                                                                <input type="hidden" name="CountryID" value="@Convert.ToInt32(datarow["CountryID"])" />
+                                                                <button type="submit" class="btn btn-success ">
+                                                                    Edit
+                                                                </button>
+                                                            </Form>
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END EXAMPLE TABLE PORTLET-->
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END CONTENT BODY -->
+<!-- END CONTENT -->
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+            $("#sample_4").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#sample_2 tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+
+            });
+        });
+    </script>
+        }
